@@ -4211,7 +4211,7 @@ static int tfa98xx_i2c_probe(struct i2c_client *i2c,
 
 	/* Power up! */
     /* we should reset chip only 1 times if all reset pin connected to 1 GPIO. */
-    if (0 == tfa98xx_device_count)
+    if (0 == tfa98xx_device_count) {
     	tfa98xx_ext_reset(tfa98xx);
 
 	if ((no_start == 0) && (no_reset == 0)) {
@@ -4221,6 +4221,7 @@ static int tfa98xx_i2c_probe(struct i2c_client *i2c,
 				ret);
 			return -EIO;
 		}
+        }
 
 		tfa98xx->rev = reg & 0xff;
 		switch (tfa98xx->rev) {
